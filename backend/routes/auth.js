@@ -1,11 +1,11 @@
 require('dotenv').config()
 const express = require('express');
 const User = require('../models/User');
+const fetchuser = require('../middleware/fetchuser');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-
 
 //creating a user
 
@@ -72,6 +72,19 @@ router.post('/login', [
 
         const authtoken = jwt.sign(data, process.env.JWT_SECRET);
         res.json(authtoken);
+    }catch{
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+//getting loggedin user details
+
+router.post('/getuser', fetchuser, async (req, res) => {
+    try{
+        userId = req.user.id;
+        const user = await User.findById(userId).select("-password");
+        res.send(user);
     }catch{
         console.error(error.message);
         res.status(500).send("Internal Server Error");
