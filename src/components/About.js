@@ -1,10 +1,10 @@
 //rafce - shortcut code snippet
-import React from 'react'
+import React from 'react';
 
 const About = () => {
   return (
     <div>
-      This is about
+      This is about page.
     </div>
   )
 }
