@@ -4,21 +4,22 @@ import Navigation from './components/Navigation';
 import Home from './components/Home';
 import About from './components/About';
 import NoteState from "./context/notes/NoteState";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
     <>
+    <NoteState>
       <Navigation/>
-      <div className="container">
-        <NoteState>
+        <Container>
           <BrowserRouter>
             <Routes>
               <Route exact path="/" element={<Home />}></Route>
               <Route exact path="/about" element={<About />}></Route>
             </Routes>
           </BrowserRouter>
-        </NoteState>
-      </div>
+        </Container>
+    </NoteState>
     </>
   );
 }

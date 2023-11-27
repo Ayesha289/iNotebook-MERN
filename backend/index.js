@@ -12,7 +12,7 @@ const start = async () => {
     try {
       await connectToMongo();
       app.listen(port, () => {
-        console.log(`Connected to ${port}`);
+        console.log(`iNotebook backend connected to ${port}`);
       });
     } catch (error) {
       console.log(error);
