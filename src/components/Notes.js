@@ -1,23 +1,22 @@
-import React, { useContext } from 'react';
-import NoteItem from './NoteItem';
-import noteContext from '../context/notes/NoteContext';
-import { Stack } from 'react-bootstrap';
+import React, { useContext } from "react";
+import NoteItem from "./NoteItem";
+import noteContext from "../context/notes/NoteContext";
+import AddNote from "./AddNote";
 
 const Notes = () => {
-    // eslint-disable-next-line
-    const context = useContext(noteContext); 
-    const {notes, setNotes} =  context;
+  // eslint-disable-next-line
+  const context = useContext(noteContext);
+  const { notes, addNote } = context;
   return (
-    <div>
-        <h3>Your Notes</h3>
-        {notes.map((note)=>{
-            return (
-              <Stack gap={3}>
-              <NoteItem className="p-2" note={note} />
-              </Stack>
-        )})}
-    </div>
-  )
-}
+    <>
+      <AddNote />
+      <div>
+        {notes.map((note) => {
+          return <NoteItem note={note} />;
+        })}
+      </div>
+    </>
+  );
+};
 
 export default Notes;

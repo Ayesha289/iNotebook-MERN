@@ -1,16 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import Navigation from './components/Navigation';
-import Home from './components/Home';
-import About from './components/About';
+import Home from "./components/Home";
+import About from "./components/About";
 import NoteState from "./context/notes/NoteState";
 import { Container } from "react-bootstrap";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
-    <NoteState>
-      <Navigation/>
+      <NoteState>
+        <Header />
         <Container>
           <BrowserRouter>
             <Routes>
@@ -19,12 +20,13 @@ function App() {
             </Routes>
           </BrowserRouter>
         </Container>
-    </NoteState>
+      </NoteState>
+      <Footer />
     </>
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 
 export default App;
