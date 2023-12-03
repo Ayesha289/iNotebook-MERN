@@ -1,3 +1,4 @@
+//rafce - shortcut code snippet
 import React from "react";
 
 const Footer = () => {

@@ -11,12 +11,15 @@ const AddNote = () => {
   const [note, setNote] = useState({
     title: "",
     description: "",
-    tag: "default",
   });
 
   const submitNote = (e) => {
     e.preventDefault();
-    addNote(note.title, note.description, note.tag);
+    addNote(note.title, note.description);
+    setNote({
+      title: "",
+      description: "",
+    });
   };
 
   const handleChange = (e) => {

@@ -1,34 +1,30 @@
 import React from "react";
 import HighlightIcon from "@mui/icons-material/Highlight";
-// import Container from "react-bootstrap/Container";
-// import Nav from "react-bootstrap/Nav";
-// import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
+import { Stack } from "react-bootstrap";
 
 export const Header = () => {
   return (
     <>
-      {/* <Navbar
-        expand="lg"
-        className="bg-body-tertiary"
-        bg="dark"
-        data-bs-theme="dark"
-      >
-        <Container>
-          <Navbar.Brand href="/">iNotebook</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
       <header>
-        <h1>
-          <HighlightIcon />
-          iNotebook
-        </h1>
+        <Stack direction="horizontal" gap={3}>
+          <div className="p-2">
+            <h1>
+              <HighlightIcon />
+              iNotebook
+            </h1>
+          </div>
+          <div className="p-2 ms-auto">
+            <Button variant="outline-light" className="link">
+              Login
+            </Button>
+          </div>
+          <div className="p-2">
+            <Button variant="outline-light" className="link">
+              Signup
+            </Button>
+          </div>
+        </Stack>
       </header>
     </>
   );

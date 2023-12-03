@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Home from "./components/Home";
-import About from "./components/About";
 import NoteState from "./context/notes/NoteState";
-import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route exact path="/" element={<Home />}></Route>
-              <Route exact path="/about" element={<About />}></Route>
             </Routes>
           </BrowserRouter>
         </Container>
