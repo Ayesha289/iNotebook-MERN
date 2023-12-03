@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import NoteState from "./context/notes/NoteState";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -15,6 +17,8 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route exact path="/" element={<Home />}></Route>
+              <Route exact path="/login" element={<Login />}></Route>
+              <Route exact path="/signup" element={<Signup />}></Route>
             </Routes>
           </BrowserRouter>
         </Container>

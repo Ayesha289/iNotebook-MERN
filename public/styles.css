@@ -119,3 +119,19 @@ form.create-note button {
     color: #fff;
     font-family: "McLaren", cursive;
 }
+
+.login {
+    width: 100%;
+    border: none;
+    padding: 15px;
+    outline: none;
+    font-size: 1.2em;
+    font-family: inherit;
+    resize: none;
+    position: relative;
+    width: 480px;
+    margin: 30px auto 20px auto;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
