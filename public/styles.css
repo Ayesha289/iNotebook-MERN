@@ -19,23 +19,12 @@ header {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-header h1 {
+header h1, h3 {
     color: #fff;
     font-family: "McLaren", cursive;
     font-weight: 200;
 }
 
-footer {
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    width: 100%;
-    height: 2.5rem;
-}
-
-footer p {
-    color: #ccc;
-}
 .note {
     background: #fff;
     border-radius: 7px;
@@ -134,4 +123,16 @@ form.create-note button {
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+
+.text{
+    font-size: 0.8em;
+    color: #f5ba13;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.text:hover{
+    color: #f8db8c;
 }

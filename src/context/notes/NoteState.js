@@ -12,8 +12,7 @@ const NoteState = (props) => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzNGMzNWU3MDc1Y2VhNGExYjExY2U3In0sImlhdCI6MTY5Nzk2OTYyM30.2odmXSGzPjY0-1mUv2WmVffwXD6ydD5Mb_oeUTe03ZE",
+        "auth-token": localStorage.getItem("token"),
       },
     });
     const json = await response.json();
@@ -27,8 +26,7 @@ const NoteState = (props) => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzNGMzNWU3MDc1Y2VhNGExYjExY2U3In0sImlhdCI6MTY5Nzk2OTYyM30.2odmXSGzPjY0-1mUv2WmVffwXD6ydD5Mb_oeUTe03ZE",
+        "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description }),
     });
@@ -54,12 +52,11 @@ const NoteState = (props) => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzNGMzNWU3MDc1Y2VhNGExYjExY2U3In0sImlhdCI6MTY5Nzk2OTYyM30.2odmXSGzPjY0-1mUv2WmVffwXD6ydD5Mb_oeUTe03ZE",
+        "auth-token": localStorage.getItem("token"),
       },
     });
 
-    const json = response.json();
+    const json = await response.json();
     console.log(json);
 
     const newNotes = notes.filter((note) => {
@@ -75,12 +72,11 @@ const NoteState = (props) => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzNGMzNWU3MDc1Y2VhNGExYjExY2U3In0sImlhdCI6MTY5Nzk2OTYyM30.2odmXSGzPjY0-1mUv2WmVffwXD6ydD5Mb_oeUTe03ZE",
+        "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description }),
     });
-    const json = response.json();
+    const json = await response.json();
     console.log(json);
 
     let newNotes = JSON.parse(JSON.stringify(notes));

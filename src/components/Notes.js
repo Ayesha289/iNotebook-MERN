@@ -18,8 +18,10 @@ const Notes = () => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    getNotes();
-  }, []);
+    if (localStorage.getItem("token")) {
+      getNotes();
+    }
+  });
 
   const ref = useRef(null);
   const refClose = useRef(null);

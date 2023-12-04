@@ -3,8 +3,11 @@ import noteContext from "../context/notes/NoteContext";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Zoom from "@mui/material/Zoom";
+import { useNavigate } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 const AddNote = () => {
+  const navigate = useNavigate();
   const context = useContext(noteContext);
   const { addNote } = context;
 
@@ -15,11 +18,16 @@ const AddNote = () => {
 
   const submitNote = (e) => {
     e.preventDefault();
-    addNote(note.title, note.description);
-    setNote({
-      title: "",
-      description: "",
-    });
+    if (localStorage.getItem("token") !== null) {
+      addNote(note.title, note.description);
+      setNote({
+        title: "",
+        description: "",
+      });
+    } else {
+      //<Link to="/login" />;
+      navigate("/login");
+    }
   };
 
   const handleChange = (e) => {

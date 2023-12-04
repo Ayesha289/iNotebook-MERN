@@ -22,7 +22,9 @@ router.post(
     const error = validationResult(req);
     if (!error.isEmpty()) {
       let success = false;
-      return res.status(400).json({ success, error: error.array() });
+      return res
+        .status(400)
+        .json({ success, error: "Enter Valid Credentials!" });
     }
     try {
       let user = await User.findOne({ email: req.body.email });
@@ -51,7 +53,8 @@ router.post(
       res.status(200).json({ success, authtoken });
     } catch {
       console.error(err.message);
-      res.status(500).send("Internal Server Error");
+      success = false;
+      res.status(500).send({ success, error: "Internal Server Error" });
     }
   }
 );
@@ -67,7 +70,9 @@ router.post(
     const error = validationResult(req);
     if (!error.isEmpty()) {
       let success = false;
-      return res.status(400).json({ success, error: error.array() });
+      return res
+        .status(400)
+        .json({ success, error: "Enter Valid Credentails!" });
     }
     const { email, password } = req.body;
     try {
@@ -98,7 +103,8 @@ router.post(
       res.status(200).json({ success, authtoken });
     } catch {
       console.error(err);
-      res.status(500).send("Internal Server Error");
+      success = false;
+      res.status(500).send({ success, error: "Internal Server Error" });
     }
   }
 );
@@ -109,12 +115,11 @@ router.post("/getuser", fetchuser, async (req, res, err) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId).select("-password");
-    success = True;
-    res.send(success, user);
+    res.json(user);
   } catch {
     console.error(err.message);
     success = false;
-    res.status(500).send(success, "Internal Server Error");
+    res.status(500).send({ success, error: "Internal Server Error" });
   }
 });
 

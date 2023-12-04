@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Stack } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+//import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -22,17 +23,22 @@ const Login = () => {
       }),
     });
     const json = await response.json();
-    console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
+      //<Navigate to="/" replace={true} />;
       navigate("/");
     } else {
-      alert("Invalid Credentials!");
+      alert(json.error);
     }
   };
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const handleLink = (e) => {
+    e.preventDefault();
+    navigate("/signup");
   };
 
   return (
@@ -46,6 +52,7 @@ const Login = () => {
             type="email"
             onChange={onChange}
             placeholder="name@example.com"
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -56,11 +63,18 @@ const Login = () => {
             type="password"
             onChange={onChange}
             placeholder="Password"
+            minLength={5}
+            required
           />
         </Form.Group>
-        <Button variant="light" className="button" onClick={handleSubmit}>
-          Login
-        </Button>
+        <Stack className="col mx-auto">
+          <Button variant="light" className="button" onClick={handleSubmit}>
+            Login
+          </Button>
+          <Button variant="link" className="text" onClick={handleLink}>
+            New user? Create a new account here!
+          </Button>
+        </Stack>
       </Form>
     </Container>
   );

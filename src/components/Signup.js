@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Stack } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+//import { Navigate } from "react-router-dom";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -27,18 +28,23 @@ const Signup = () => {
       }),
     });
     const json = await response.json();
-    console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
       navigate("/");
     } else {
-      alert("Invalid Credentials!");
+      alert(json.error);
     }
   };
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+  const handleLink = (e) => {
+    e.preventDefault();
+    navigate("/login");
+  };
+
   return (
     <Container className="login">
       <Form>
@@ -50,6 +56,8 @@ const Signup = () => {
             type="text"
             onChange={onChange}
             placeholder="John Doe"
+            minLength={3}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -60,6 +68,7 @@ const Signup = () => {
             type="email"
             onChange={onChange}
             placeholder="name@example.com"
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -70,11 +79,18 @@ const Signup = () => {
             type="password"
             onChange={onChange}
             placeholder="Password"
+            minLength={5}
+            required
           />
         </Form.Group>
-        <Button variant="light" className="button" onClick={handleSubmit}>
-          Signup
-        </Button>
+        <Stack className="col mx-auto">
+          <Button variant="light" className="button" onClick={handleSubmit}>
+            Signup
+          </Button>
+          <Button variant="link" className="text" onClick={handleLink}>
+            Already an existing user? Login here!
+          </Button>
+        </Stack>
       </Form>
     </Container>
   );
