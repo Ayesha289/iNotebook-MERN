@@ -13,18 +13,25 @@ const Signup = () => {
     password: "",
   });
 
+  const [nextPass, setNextPass] = useState("");
+
   let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    signupUser(credentials.name, credentials.email, credentials.password);
-    if (localStorage.getItem("token")) {
-      navigate("/");
+    if (nextPass !== credentials.password) {
+      alert("Passwords don't match!");
+    } else {
+      signupUser(credentials.name, credentials.email, credentials.password);
     }
   };
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const change = (e) => {
+    setNextPass(e.target.value);
   };
 
   const handleLink = (e) => {
@@ -65,6 +72,18 @@ const Signup = () => {
             value={credentials.password}
             type="password"
             onChange={onChange}
+            placeholder="Password"
+            minLength={5}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Re-enter Password</Form.Label>
+          <Form.Control
+            name="re-password"
+            value={nextPass}
+            type="password"
+            onChange={change}
             placeholder="Password"
             minLength={5}
             required

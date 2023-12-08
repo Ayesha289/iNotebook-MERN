@@ -11,12 +11,9 @@ const Login = () => {
 
   let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(credentials.email, credentials.password);
-    if (localStorage.getItem("token")) {
-      navigate("/");
-    }
   };
 
   const onChange = (e) => {

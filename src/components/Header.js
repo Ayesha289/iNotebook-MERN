@@ -2,23 +2,23 @@ import React, { useContext } from "react";
 import HighlightIcon from "@mui/icons-material/Highlight";
 import Button from "react-bootstrap/Button";
 import { Stack } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import authContext from "./../context/auth/AuthContext";
 
 export const Header = () => {
   const context = useContext(authContext);
   const { getUsers } = context;
-  const navigate = useNavigate();
 
-  const user = getUsers().then((result) => {
-    return result;
-  });
+  if (localStorage.getItem("token")) {
+    getUsers().then((result) => {
+      return (document.getElementById("user").innerHTML =
+        "<h3>Hello, " + result + "  </h3>");
+    });
+  }
 
-  const logOut = (e) => {
-    e.preventDefault();
+  const logOut = () => {
+    window.location.reload();
     localStorage.removeItem("token");
-    navigate("/login");
   };
   return (
     <>
@@ -43,6 +43,7 @@ export const Header = () => {
                 Signup
               </Button>
             </div>
+            <div className="d-none" id="user"></div>
           </Stack>
         </header>
       ) : (
@@ -56,9 +57,7 @@ export const Header = () => {
                 </h1>
               </Nav.Link>
             </div>
-            <div className="p-2 ms-auto">
-              <h3>{`Hello,`}</h3>
-            </div>
+            <div className="p-2 ms-auto" id="user"></div>
             <div className="p-2">
               <Button onClick={logOut} variant="outline-light" className="link">
                 Logout

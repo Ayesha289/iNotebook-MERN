@@ -36,6 +36,7 @@ const AuthState = (props) => {
     const json = await response.json();
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
+      window.location.replace("/");
     } else {
       alert(json.error);
     }
@@ -59,6 +60,7 @@ const AuthState = (props) => {
     const json = await response.json();
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
+      window.location.replace("/");
     } else {
       alert(json.error);
     }
