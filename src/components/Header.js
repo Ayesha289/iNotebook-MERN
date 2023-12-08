@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import HighlightIcon from "@mui/icons-material/Highlight";
 import Button from "react-bootstrap/Button";
 import { Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import authContext from "./../context/auth/AuthContext";
+
 export const Header = () => {
+  const context = useContext(authContext);
+  const { getUsers } = context;
   const navigate = useNavigate();
+
+  const user = getUsers().then((result) => {
+    return result;
+  });
 
   const logOut = (e) => {
     e.preventDefault();
@@ -14,13 +23,15 @@ export const Header = () => {
   return (
     <>
       {!localStorage.getItem("token") ? (
-        <header href="/">
+        <header>
           <Stack direction="horizontal" gap={3}>
             <div className="p-2">
-              <h1>
-                <HighlightIcon />
-                iNotebook
-              </h1>
+              <Nav.Link href="/">
+                <h1>
+                  <HighlightIcon />
+                  iNotebook
+                </h1>
+              </Nav.Link>
             </div>
             <div className="p-2 ms-auto">
               <Button href="/login" variant="outline-light" className="link">
@@ -35,15 +46,20 @@ export const Header = () => {
           </Stack>
         </header>
       ) : (
-        <header href="/">
+        <header>
           <Stack direction="horizontal" gap={3}>
             <div className="p-2">
-              <h1>
-                <HighlightIcon />
-                iNotebook
-              </h1>
+              <Nav.Link href="/">
+                <h1>
+                  <HighlightIcon />
+                  iNotebook
+                </h1>
+              </Nav.Link>
             </div>
             <div className="p-2 ms-auto">
+              <h3>{`Hello,`}</h3>
+            </div>
+            <div className="p-2">
               <Button onClick={logOut} variant="outline-light" className="link">
                 Logout
               </Button>

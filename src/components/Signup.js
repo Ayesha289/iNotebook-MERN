@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Stack } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-//import { Navigate } from "react-router-dom";
+import authContext from "../context/auth/AuthContext";
 
 const Signup = () => {
+  const context = useContext(authContext);
+  const { signupUser } = context;
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -15,24 +17,9 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/createUser", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: credentials.name,
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
-    const json = await response.json();
-    if (json.success) {
-      localStorage.setItem("token", json.authtoken);
+    signupUser(credentials.name, credentials.email, credentials.password);
+    if (localStorage.getItem("token")) {
       navigate("/");
-    } else {
-      alert(json.error);
     }
   };
 

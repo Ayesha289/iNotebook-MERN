@@ -5,27 +5,30 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import NoteState from "./context/notes/NoteState";
 import Header from "./components/Header";
+import AuthState from "./context/auth/AuthState";
 
 function App() {
   return (
     <>
-      <NoteState>
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={[<Header />, <Home />]}></Route>
-            <Route
-              exact
-              path="/login"
-              element={[<Header />, <Login />]}
-            ></Route>
-            <Route
-              exact
-              path="/signup"
-              element={[<Header />, <Signup />]}
-            ></Route>
-          </Routes>
-        </BrowserRouter>
-      </NoteState>
+      <AuthState>
+        <NoteState>
+          <BrowserRouter>
+            <Routes>
+              <Route exact path="/" element={[<Header />, <Home />]}></Route>
+              <Route
+                exact
+                path="/login"
+                element={[<Header />, <Login />]}
+              ></Route>
+              <Route
+                exact
+                path="/signup"
+                element={[<Header />, <Signup />]}
+              ></Route>
+            </Routes>
+          </BrowserRouter>
+        </NoteState>
+      </AuthState>
     </>
   );
 }
