@@ -15,7 +15,9 @@ const AuthState = (props) => {
       },
     });
     const json = await response.json();
-    return Promise.resolve(json.name).then((value) => {
+    const str = json.name;
+    const arr = str.split(" ");
+    return Promise.resolve(arr[0]).then((value) => {
       return value;
     });
   };
