@@ -12,7 +12,7 @@ export const Header = () => {
   if (localStorage.getItem("token")) {
     getUsers().then((result) => {
       return (document.getElementById("user").innerHTML =
-        "<h3>Hello, " + result + "  </h3>");
+        "<h3>Hello, " + result + "!</h3>");
     });
   }
 
